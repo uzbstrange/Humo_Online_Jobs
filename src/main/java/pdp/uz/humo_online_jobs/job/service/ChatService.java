@@ -1,4 +1,4 @@
-package pdp.uz.humo_online_jobs.chat;
+package pdp.uz.humo_online_jobs.job.service;
 
 import org.springframework.stereotype.Service;
 import pdp.uz.humo_online_jobs.custom_responses.ApiResponse;

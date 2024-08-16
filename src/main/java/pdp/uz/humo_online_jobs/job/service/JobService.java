@@ -10,6 +10,7 @@ import pdp.uz.humo_online_jobs.user.UserEntity;
 import pdp.uz.humo_online_jobs.user.UserRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class JobService {
@@ -22,7 +23,7 @@ public class JobService {
         this.userRepository = userRepository;
     }
 
-    public ApiResponse postJob(JobDto jobDto, Long employerId) {
+    public ApiResponse postJob(Long employerId, JobDto jobDto) {
         UserEntity employer = userRepository.findById(employerId)
                 .orElseThrow(() -> new IllegalStateException("Employer not found"));
 
@@ -36,11 +37,18 @@ public class JobService {
         return new ApiResponse("Job posted successfully", true);
     }
 
-    public List<JobEntity> findJobs(JobSearchDto searchDto) {
-        if (searchDto.getTitle() != null && !searchDto.getTitle().isEmpty()) {
-            return jobRepository.findByTitleContainingIgnoreCaseAndIsActiveTrue(searchDto.getTitle());
+    public List<JobDto> findJobs(String title) {
+        List<JobEntity> jobs;
+
+        if (title != null && !title.isEmpty()) {
+            jobs = jobRepository.findByTitleContainingIgnoreCaseAndIsActiveTrue(title);
+        } else {
+            jobs = jobRepository.findByIsActiveTrue();
         }
-        return jobRepository.findByIsActiveTrue(); // Retrieve all active jobs
+
+        return jobs.stream()
+                .map(job -> new JobDto(job.getTitle(), job.getDescription()))
+                .collect(Collectors.toList());
     }
 
 }
