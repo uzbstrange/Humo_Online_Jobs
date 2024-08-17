@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Finder - Home</title>
+    <title>Find Jobs</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,7 +13,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="register.html">Register</a></li>
                 <li><a href="login.html">Login</a></li>
-                <li><a href="jobs.html">Find Jobs</a></li>
+                <li><a href="createJob.html">Post a Job</a></li>
+                <li><a href="findJobs.html">Find Jobs</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -21,21 +22,15 @@
     </header>
 
     <main>
-        <section class="hero">
-            <h1>Welcome to Job Finder</h1>
-            <p>Your gateway to finding the perfect job or the best talent!</p>
-            <a href="register.html" class="btn">Get Started</a>
-        </section>
+        <section class="search-jobs">
+            <h1>Find Your Next Job</h1>
+            <form id="jobSearchForm">
+                <input type="text" id="jobTitle" placeholder="Search by job title" required>
+                <button type="submit">Search</button>
+            </form>
 
-        <section class="features">
-            <h2>Why Choose Us?</h2>
-            <div class="feature">
-                <h3>For Employers</h3>
-                <p>Post job listings and find the best candidates.</p>
-            </div>
-            <div class="feature">
-                <h3>For Job Seekers</h3>
-                <p>Browse job listings and apply for your dream job.</p>
+            <div id="jobResults">
+                <!-- Job results will be displayed here -->
             </div>
         </section>
     </main>
