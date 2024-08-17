@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Finder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Job Finder</h1>
+
+    <section id="job-search">
+        <h2>Search Jobs</h2>
+        <input type="tex" id="search-title" placeholder="Enter job title">
+        <button onclick="searchJobs()">Search</button>
+        <ul id="job-list"></ul>
+    </section>
+
+    <section id="job-post">
+        <h2>Post a Job</h2>
+        <input type="text" id="post-title" placeholder="Job title">
+        <textarea id="post-description" placeholder="Job description"></textarea>
+        <button onclick="postJob()">Post Job</button>
+    </section>
+
+    <section id="chat">
+        <h2>Start a Chat</h2>
+        <input type="text" id="employer-id" placeholder="Employer ID">
+        <input type="text" id="job-seeker-id" placeholder="Job Seeker ID">
+        <button onclick="startChat()">Start Chat</button>
+    </section>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
