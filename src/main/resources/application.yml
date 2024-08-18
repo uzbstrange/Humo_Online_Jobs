@@ -16,5 +16,3 @@ spring:
         format_sql: true
   thymeleaf:
     prefix: classpath:/templates/
-    suffix: .html
-    mode: HTML5
