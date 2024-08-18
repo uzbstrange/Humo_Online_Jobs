@@ -29,7 +29,7 @@
                 password: password
             };
 
-            fetch('/api/auth/login', { // Ensure the URL is correct and starts with a '/'
+            fetch('/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -40,7 +40,6 @@
             .then(data => {
                 if (data.success) {
                     alert('Login successful!');
-                    // Redirect to another page or update the UI
                 } else {
                     alert('Login failed: ' + data.message);
                 }
