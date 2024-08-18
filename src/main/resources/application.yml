@@ -7,6 +7,7 @@ spring:
     username: postgres
     password: b1t
     driverClassName: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -14,5 +15,13 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
   thymeleaf:
     prefix: classpath:/templates/
+
+jwt:
+  token:
+    expiration:
+      mills: 3600000
+    secret:
+      key: asdasdasdasdasdasdasdsdasdasdasdasdasdasd
