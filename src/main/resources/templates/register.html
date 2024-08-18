@@ -18,7 +18,7 @@
         <input type="password" id="passwordId" name="passwordName" required>
         <br>
         <label for="userType">User Type:</label>
-        <select id="userType" name="userType" required>
+        <select id="userTypeId" name="userTypeName" required>
             <option value="JOB_SEEKER">Job Seeker</option>
             <option value="EMPLOYER">Employer</option>
         </select>
@@ -36,10 +36,10 @@
             const userType = document.getElementById('userType').value;
 
             const data = {
-                email: email,
-                username: username,
-                password: password,
-                userType: userType
+                emailId: email,
+                usernameId: username,
+                passwordId: password,
+                userTypeId: userType
             };
 
             fetch('/api/auth/register', {
