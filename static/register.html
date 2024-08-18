@@ -29,7 +29,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         userType: formData.get('userType')
     };
 
-    fetch('/users/register', {
+    fetch('api/auth/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
