@@ -8,9 +8,9 @@ document.getElementById('registerForm').addEventListener('submit', function(even
 
     const data = {
         email: email,
-        username: username,
         password: password,
-        userType: userType
+        userType: userType,
+        username: username
     };
 
     fetch('/api/auth/register', {
