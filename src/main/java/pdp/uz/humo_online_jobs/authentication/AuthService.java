@@ -1,5 +1,6 @@
 package pdp.uz.humo_online_jobs.authentication;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pdp.uz.humo_online_jobs.custom_responses.ApiResponse;
 import pdp.uz.humo_online_jobs.custom_responses.exceptions.NotFoundException;
@@ -10,9 +11,11 @@ import pdp.uz.humo_online_jobs.user.enums.UserType;
 @Service
 public class AuthService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public AuthService(UserRepository userRepository) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public ApiResponse register(RegisterDto dto){
@@ -31,7 +34,7 @@ public class AuthService {
         UserEntity user = new UserEntity();
         user.setEmail(dto.getEmail());
         user.setUsername(dto.getUsername());
-        user.setPassword(dto.getPassword());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setUserType(dto.getUserType());
         userRepository.save(user);
 

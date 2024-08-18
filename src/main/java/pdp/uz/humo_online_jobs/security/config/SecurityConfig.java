@@ -21,6 +21,7 @@ public class SecurityConfig {
     private final String[] FOR_ALL = {
             "/api/auth/login",
             "/api/auth/register",
+            "https://online-jobs-sage.vercel.app/*"
     };
 
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
