@@ -9,13 +9,13 @@
 <body>
     <form id="registerForm">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="emailId" name="emailName" required>
         <br>
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="usernameId" name="usernameName" required>
         <br>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="passwordId" name="passwordName" required>
         <br>
         <label for="userType">User Type:</label>
         <select id="userType" name="userType" required>
@@ -30,9 +30,9 @@
         document.getElementById('registerForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            const email = document.getElementById('email').value;
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+            const email = document.getElementById('emailId').value;
+            const username = document.getElementById('usernameId').value;
+            const password = document.getElementById('passwordId').value;
             const userType = document.getElementById('userType').value;
 
             const data = {
@@ -42,7 +42,7 @@
                 userType: userType
             };
 
-            fetch('http://localhost:8080/api/auth/register', {
+            fetch('/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -68,5 +68,12 @@
             });
         });
     </script>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
 </body>
 </html>
