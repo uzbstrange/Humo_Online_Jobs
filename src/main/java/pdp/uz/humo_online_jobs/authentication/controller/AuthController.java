@@ -11,7 +11,7 @@ import pdp.uz.humo_online_jobs.authentication.RegisterDto;
 import pdp.uz.humo_online_jobs.custom_responses.ApiResponse;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/auth")
 public class AuthController {
     private final AuthService authService;
 
