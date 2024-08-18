@@ -21,10 +21,9 @@
     <main>
         <section class="post-job">
             <h1>Post a New Job</h1>
-            <form action="/api/jobs/post" method="post">
-                <input type="text" name="title" placeholder="Job Title" required>
-                <textarea name="description" placeholder="Job Description" required></textarea>
-                <input type="hidden" name="employerId" value="1"> <!-- Example employer ID -->
+            <form id="jobPostForm">
+                <input type="text" id="jobTitle" placeholder="Job Title" required>
+                <textarea id="jobDescription" placeholder="Job Description" required></textarea>
                 <button type="submit">Post Job</button>
             </form>
         </section>
@@ -33,5 +32,7 @@
     <footer>
         <p>&copy; 2024 Job Finder. All rights reserved.</p>
     </footer>
+
+    <script src="createJobs.js"></script>
 </body>
 </html>

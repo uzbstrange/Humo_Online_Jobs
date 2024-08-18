@@ -21,13 +21,12 @@
     <main>
         <section class="search-jobs">
             <h1>Find Your Next Job</h1>
-            <form action="/api/jobs/search" method="get">
-                <input type="text" name="title" placeholder="Search by job title" required>
+            <form id="jobSearchForm">
+                <input type="text" id="jobTitle" placeholder="Search by job title" required>
                 <button type="submit">Search</button>
             </form>
 
             <div id="jobResults">
-                <!-- Job results will be displayed here after form submission -->
             </div>
         </section>
     </main>
@@ -35,5 +34,7 @@
     <footer>
         <p>&copy; 2024 Job Finder. All rights reserved.</p>
     </footer>
+
+    <script src="findJobs.js"></script>
 </body>
 </html>
