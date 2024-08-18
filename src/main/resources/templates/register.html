@@ -3,58 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="authStyles.css">
 </head>
-<form id="registerForm">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <br>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    <br>
-    <label for="userType">User Type:</label>
-    <select id="userType" name="userType" required>
-        <option value="JOB_SEEKER">Job Seeker</option>
-        <option value="EMPLOYER">Employer</option>
-    </select>
-    <br>
-    <button type="submit">Register</button>
-</form>
+<body>
+    <form id="registerForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <label for="userType">User Type:</label>
+        <select id="userType" name="userType" required>
+            <option value="JOB_SEEKER">Job Seeker</option>
+            <option value="EMPLOYER">Employer</option>
+        </select>
+        <br>
+        <button type="submit">Register</button>
+    </form>
 
-<script>
-document.getElementById('registerForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    const formData = new FormData(this);
-    const data = {
-        email: formData.get('email'),
-        username: formData.get('username'),
-        password: formData.get('password'),
-        userType: formData.get('userType')
-    };
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const userType = document.getElementById('userType').value;
 
-    fetch('api/auth/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Registration successful!');
-        } else {
-            alert('Registration failed: ' + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-});
-</script>
+            const data = {
+                email: email,
+                username: username,
+                password: password,
+                userType: userType
+            };
+
+            fetch('api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Registration successful!');
+                    // Formni tozalash
+                    document.getElementById('registerForm').reset();
+                } else {
+                    alert('Registration failed: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
 </html>
