@@ -26,7 +26,6 @@
         <button type="submit">Register</button>
     </form>
 
-
     <script>
         document.getElementById('registerForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -43,7 +42,7 @@
                 userType: userType
             };
 
-            fetch('api/auth/register', {
+            fetch('/api/auth/register', { // Ensure the URL is correct and starts with a '/'
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -54,8 +53,7 @@
             .then(data => {
                 if (data.success) {
                     alert('Registration successful!');
-                    // Formni tozalash
-                    document.getElementById('registerForm').reset();
+                    document.getElementById('registerForm').reset(); // Reset the form after success
                 } else {
                     alert('Registration failed: ' + data.message);
                 }

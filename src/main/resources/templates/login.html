@@ -6,44 +6,49 @@
     <title>Login</title>
     <link rel="stylesheet" href="authStyles.css">
 </head>
-<form id="loginForm">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    <br>
-    <button type="submit">Login</button>
-</form>
+<body>
+    <form id="loginForm" action="/api/auth/login" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+    </form>
 
-<script>
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    const formData = new FormData(this);
-    const data = {
-        email: formData.get('email'),
-        password: formData.get('password')
-    };
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-    fetch('api/auth/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Login successful!');
-        } else {
-            alert('Login failed: ' + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-});
-</script>
+            const data = {
+                email: email,
+                password: password
+            };
+
+            fetch('/api/auth/login', { // Ensure the URL is correct and starts with a '/'
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Login successful!');
+                    // Redirect to another page or update the UI
+                } else {
+                    alert('Login failed: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
 </html>
