@@ -2,28 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Registration Page</title>
+  <title>User Registration Page</title>
 </head>
 <body>
-<form id="registerForm">
-        <label for="email">Email:</label>
-        <input type="email" id="email" placeholder="Enter your email" name="email" required>
-        <br>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" placeholder="Enter password" name="password" required>
-        <br>
-        <label for="userType">User Type:</label>
-        <select id="userType" name="userType" required>
-            <option value="EMPLOYER">Employer</option>
-            <option value="JOB_SEEKER">Job Seeker</option>
-        </select>
-        <br>
-        <button type="SUBMIT">Register</button>
-    </form>
-
-    <script src="register.js"></script>
+<h2>User Registration</h2>
+<form id="registrationForm" action="/signup" method="POST">
+    <input type="email" name="email" placeholder="email" required>
+    <input type="text" name="username" placeholder="username" required>
+    <input type="password" name="password" placeholder="password" required>
+    <label for="userType">User Type:</label>
+            <select id="userType" name="userType" required>
+                <option value="EMPLOYER">Employer</option>
+                <option value="JOB_SEEKER">Job Seeker</option>
+            </select>
+    <input type="submit" value="Register">
+</form>
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        var passwordField = document.getElementsByName('password')[0];
+        if (passwordField.value.length < 1) {
+            alert('Password must be at least 1 characters long.');
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+</script>
 </body>
 </html>
