@@ -13,7 +13,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         userType: userType
     };
 
-    fetch('http://localhost:8080/api/auth/register', {  // Ensure the URL is correct for your backend
+    fetch('/api/auth/register', {  // Ensure the URL is correct for your backend
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
