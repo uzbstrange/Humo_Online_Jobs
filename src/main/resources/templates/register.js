@@ -8,25 +8,29 @@ document.getElementById('registerForm').addEventListener('submit', function(even
 
     const data = {
         email: email,
-        username: username,  // Make sure this key matches what the backend expects
+        username: username,
         password: password,
         userType: userType
     };
 
-    fetch('/api/auth/register', {  // Ensure the URL is correct for your backend
+    fetch('http://localhost:8080/api/auth/register', {
         method: 'POST',
-        headers: {
+            headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            console.log(response); // Log the raw response for debugging
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();
+        body: JSON.stringify({
+            email: document.getElementById('email').value,
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value,
+            userType: document.getElementById('userType').value
         })
+    })
+.then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
         .then(data => {
             if (data.success) {
                 alert('Registration successful!');
@@ -37,4 +41,5 @@ document.getElementById('registerForm').addEventListener('submit', function(even
             }
         })
         .catch(error => console.error('Error:', error));
+
 });
