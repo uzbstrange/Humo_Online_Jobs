@@ -39,21 +39,25 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         final String token = header.substring(BEARER_PREFIX.length());
 
-        if (!jwtProvider.validateToken(token)) {
-            filterChain.doFilter(request, response);
-            return;
+        try {
+            if (jwtProvider.validateToken(token)) {
+                var claims = jwtProvider.parseClaims(token);
+                var username = claims.get("username", String.class);
+                var role = claims.get("role", String.class);
+
+                List<GrantedAuthority> authorities = role != null ?
+                        Collections.singletonList(new SimpleGrantedAuthority(role)) :
+                        Collections.emptyList();
+
+                var authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            } else {
+                logger.warn("Invalid or expired JWT token");
+            }
+        } catch (Exception e) {
+            logger.error("JWT processing failed", e);
         }
 
-        var claims = jwtProvider.parseClaims(token);
-        var username = claims.get("username", String.class);
-        var role = claims.get("role", String.class);
-
-        List<GrantedAuthority> authorities = role != null ?
-                Collections.singletonList(new SimpleGrantedAuthority(role)) :
-                Collections.emptyList();
-
-        var authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
     }
 }

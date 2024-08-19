@@ -1,4 +1,4 @@
-document.getElementById('registerForm').addEventListener('SUBMIT', function(event) {
+document.getElementById('registerForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const email = document.getElementById('email').value;
@@ -22,12 +22,12 @@ document.getElementById('registerForm').addEventListener('SUBMIT', function(even
     })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
+            if (data.isSuccess) {
                 alert('Registration successful!');
                 document.getElementById('registerForm').reset();
                 window.location.href = '/login.html';
             } else {
-                alert('<h1>Registration failed:</h1> ' + data.message);
+                alert('Registration failed: ' + data.message);
             }
         })
         .catch(error => console.error('Error:', error));
