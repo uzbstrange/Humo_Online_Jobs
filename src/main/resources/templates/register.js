@@ -18,9 +18,12 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data) // Ensure this is a valid JSON string
+        body: JSON.stringify(data)
     })
-        .then(response => response.json())
+        .then(response => {
+            console.log(response); // Check the raw response
+            return response.json();
+        })
         .then(data => {
             if (data.success) {
                 alert('Registration successful!');
@@ -31,5 +34,4 @@ document.getElementById('registerForm').addEventListener('submit', function(even
             }
         })
         .catch(error => console.error('Error:', error));
-    console.log(JSON.stringify(data));
 });
