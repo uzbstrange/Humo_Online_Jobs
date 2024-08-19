@@ -13,7 +13,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         userType: userType
     };
 
-    fetch('http://localhost:8080/api/auth/register', {
+    fetch('https://humo-online-jobs-new.vercel.app', {
         method: 'POST',
             headers: {
             'Content-Type': 'application/json'
