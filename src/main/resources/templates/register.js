@@ -33,5 +33,5 @@ document.getElementById('registerForm').addEventListener('submit', function(even
                 alert('Registration failed: ' + data.message);
             }
         })
-        // .catch(error => console.error('Error:', error));
+        .catch(error => console.error('Error:', error));
 });
