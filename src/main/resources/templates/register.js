@@ -18,11 +18,11 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data) // Ensure this is a valid JSON string
     })
         .then(response => response.json())
         .then(data => {
-            if (data.isSuccess) {
+            if (data.success) {
                 alert('Registration successful!');
                 document.getElementById('registerForm').reset();
                 window.location.href = '/login.html';
@@ -31,4 +31,5 @@ document.getElementById('registerForm').addEventListener('submit', function(even
             }
         })
         .catch(error => console.error('Error:', error));
+    console.log(JSON.stringify(data));
 });
