@@ -1,6 +1,5 @@
 package pdp.uz.humo_online_jobs.authentication;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pdp.uz.humo_online_jobs.custom_responses.ApiResponse;
 import pdp.uz.humo_online_jobs.custom_responses.exceptions.NotFoundException;
@@ -11,11 +10,11 @@ import pdp.uz.humo_online_jobs.user.enums.UserType;
 @Service
 public class AuthService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
 
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public AuthService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+//        this.passwordEncoder = passwordEncoder;
     }
 
     public ApiResponse register(RegisterDto dto){
@@ -34,7 +33,7 @@ public class AuthService {
         UserEntity user = new UserEntity();
         user.setEmail(dto.getEmail());
         user.setUsername(dto.getUsername());
-        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setPassword(dto.getPassword());
         user.setUserType(dto.getUserType());
         userRepository.save(user);
 
@@ -45,7 +44,7 @@ public class AuthService {
         if (!userRepository.existsByEmailIgnoreCase(dto.getEmail())){
             return new ApiResponse("Not Registered from this email",false);
         }
-        UserEntity user = userRepository.findByEmailAndPassword(dto.getEmail(),dto.getPassword()).orElseThrow(() -> new NotFoundException("User Not Found"));
+        userRepository.findByEmailAndPassword(dto.getEmail(),dto.getPassword()).orElseThrow(() -> new NotFoundException("User Not Found"));
         return new ApiResponse("Successfully logged in",true);
     }
 }

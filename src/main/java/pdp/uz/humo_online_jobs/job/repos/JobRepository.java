@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface JobRepository extends JpaRepository<JobEntity, Long> {
-    List<JobEntity> findByIsActiveTrue(); // Retrieve all active jobs
-    List<JobEntity> findByTitleContainingIgnoreCaseAndIsActiveTrue(String title); // Filter jobs by title
+    List<JobEntity> findByIsActiveTrue();
+    List<JobEntity> findByTitleContainingIgnoreCaseAndIsActiveTrue(String title);
 }

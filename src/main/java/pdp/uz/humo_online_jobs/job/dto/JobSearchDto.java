@@ -10,5 +10,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class JobSearchDto {
-    private String title; // Optional: Filter by job title
+    private String title;
 }
